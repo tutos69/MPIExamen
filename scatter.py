@@ -6,7 +6,7 @@ rank = comm.Get_rank()
 
 if rank == 0:
    # tm = int(input("Ingrese el tamaño de la matriz: "))
-   size_ = (128, 128)
+   size_ = (2048, 2048)
    matriz1 = np.random.randint(10, size=size_).astype("float") / 100
    matriz2 = np.random.randint(10, size=size_).astype("float") / 100
    producto_res = np.dot(matriz1, matriz2)
@@ -17,26 +17,27 @@ if rank == 0:
 else:
    array_to_share = None
 
-recvbuf = comm.scatter(array_to_share, root=0)
+def calculoMatriz(matrizs):
+   filas = matrizs[0]
+   columnas = matrizs[1]
+   filas_a = len(filas)
+   filas_b = len(columnas)
+   columnas_a = len(filas[0])
+   columnas_b = len(columnas[0])
+   size_ = (filas_a, columnas_a)
+   calculo = np.zeros(dtype=float, shape=size_)
+   for i in range(filas_a):
+      for j in range(columnas_b):
+         suma = 0
+         for k in range(columnas_a):
+            suma += filas[i][k] * columnas[k][j]
+         calculo[i][j] = suma
+   return calculo
 
+recvbuf = comm.scatter(array_to_share, root=0)
 for kk in range(8):
    if rank == kk:
-      # print(rank)
-      filas = recvbuf[0]
-      columnas = recvbuf[1]
-      filas_a = len(filas)
-      filas_b = len(columnas)
-      columnas_a = len(filas[0])
-      columnas_b = len(columnas[0])
-      size_ = (filas_a, columnas_a)
-      calculo = np.zeros(dtype=float, shape=size_)
-      for i in range(filas_a):
-         for j in range(columnas_b):
-            suma = 0
-            for k in range(columnas_a):
-               suma += filas[i][k] * columnas[k][j]
-            calculo[i][j] = suma
-      envia1 = calculo
+      envia1 = calculoMatriz(recvbuf)
       comm.send(envia1, dest=8)
 
 if rank == 8:

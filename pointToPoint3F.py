@@ -25,8 +25,7 @@ def matrizrrr(data):
 
 
 if rank == 0:
-  # tm = int(input("Ingrese el tamaño de la matriz: "))
-  size_ = (1024, 1024)
+  size_ = (2048, 2048)
   matriz1 = np.random.randint(10, size=size_).astype("float") / 100
   matriz2 = np.random.randint(10, size=size_).astype("float") / 100
   producto_res = np.dot(matriz1, matriz2)
