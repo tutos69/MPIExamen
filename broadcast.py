@@ -7,7 +7,7 @@ rank = comm.Get_rank()
 
 
 if rank == 0:
-    size_ = (2048, 2048)
+    size_ = (64, 64)
     matriz1 = np.random.randint(10, size=size_).astype("float") / 100
     matriz2 = np.random.randint(10, size=size_).astype("float") / 100
     producto_res = np.dot(matriz1, matriz2)

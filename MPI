@@ -1,1 +1,3 @@
  ptime mpiexec -n 10 python3 broadcas.py
+ ptime mpiexec -n 10 python3 broadcas.py
+mpiexec -n 10 python3 broadcastExamenMultiplicacion.py
