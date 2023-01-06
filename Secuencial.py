@@ -3,12 +3,14 @@ import multiprocessing
 
 
 
-size_ = (128,128)
+size_ = (64,64)
 matriz1 = np.random.randint(10, size=size_).astype("float") / 100
 matriz2 = np.random.randint(10, size=size_).astype("float") / 100
-print("hola")
-import time
-inicio = time.time()
+# print("hola")
+producto_res = np.dot(matriz1, matriz2)
+
+# import time
+# inicio = time.time()
 
 filas_a = len(matriz1)
 filas_b = len(matriz2)
@@ -25,5 +27,7 @@ for i in range(filas_a):
         for k in range(columnas_a):
             suma += matriz1[i][k] * matriz2[k][j]
         producto[i][j] = suma
-fin = time.time()
-print("El proceso de multiplicar las matrices secuencialmente se ejecutó en %d segundos" % (fin - inicio))
+# fin = time.time()
+print('¿Los resultados son correctos?', np.allclose(producto, producto_res))
+
+# print("El proceso de multiplicar las matrices secuencialmente se ejecutó en %d segundos" % (fin - inicio))
