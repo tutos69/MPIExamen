@@ -5,7 +5,7 @@ comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 
 if rank == 0:
-    size_ = (64, 64)
+    size_ = (512, 512)
     matriz1 = np.random.randint(10, size=size_).astype("float") / 100
     matriz2 = np.random.randint(10, size=size_).astype("float") / 100
     producto_res = np.dot(matriz1, matriz2)
@@ -13,7 +13,7 @@ if rank == 0:
 
 
 else:
-   variable_to_share = 100
+    variable_to_share = 100
 
 
 def calculoMatriz(pos,matriz):

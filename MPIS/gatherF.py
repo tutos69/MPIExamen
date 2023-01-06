@@ -27,7 +27,7 @@ def calculoMatriz(pos,matriz):
 data = 0
 
 if rank == 0:
-    size_ = (2048, 2048)
+    size_ = (64, 64)
     matriz1 = np.random.randint(10, size=size_).astype("float") / 100
     matriz2 = np.random.randint(10, size=size_).astype("float") / 100
     matrices = [matriz1,matriz2]

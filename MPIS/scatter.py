@@ -13,7 +13,6 @@ if rank == 0:
    filas = np.vsplit(matriz1, 8)
    columnas = matriz2
    array_to_share = [[filas[0],columnas],[filas[1],columnas],[filas[2],columnas],[filas[3],columnas],[filas[4],columnas],[filas[5],columnas],[filas[6],columnas],[filas[7],columnas],producto_res] 
-           
 else:
    array_to_share = None
 
